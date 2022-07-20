@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour
         int i = Random.Range(0, pentaminoes.Length);
 
         // Spawn group at current position
+        // replaced Instantiate(pentaminoes[i], transform.position, Quaternion.identity); for debugging
         Instantiate(pentaminoes[i], transform.position, Quaternion.identity);
     }
 
