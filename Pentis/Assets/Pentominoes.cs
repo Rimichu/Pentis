@@ -8,12 +8,11 @@ public class Pentominoes : MonoBehaviour
 
     void Start()
     {
-        transform.position += new Vector3(0, 25, 0);
-
         // Default position not valid, game over
         if (!isValidGridPosition())
         {
             Debug.Log("Game Over");
+            Debug.Log(gameObject);
             Destroy(gameObject);
         }
     }
@@ -31,9 +30,10 @@ public class Pentominoes : MonoBehaviour
             }
 
             // Block in grid cell
-            if (Playfield.grid[(int)vector.x,(int)vector.y,(int)vector.z] != null && Playfield.grid[(int)vector.x, (int)vector.y, (int)vector.z].parent != transform)
-            {
-                return false;
+            // Playfield.grid[(int)vector.x, (int)vector.y] != null (Tetris 2D code)
+            if (Playfield.grid[(int)vector.x, (int)vector.y, (int)vector.z] != null && Playfield.grid[(int)vector.x, (int)vector.y, (int)vector.z].parent != transform)
+            { 
+                    return false;
             }
         }
         return true;
