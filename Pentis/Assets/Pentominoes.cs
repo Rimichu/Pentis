@@ -29,8 +29,6 @@ public class Pentominoes : MonoBehaviour
                 return false;
             }
 
-            // Block in grid cell
-            // Playfield.grid[(int)vector.x, (int)vector.y] != null (Tetris 2D code)
             if (Playfield.grid[(int)vector.x, (int)vector.y, (int)vector.z] != null && Playfield.grid[(int)vector.x, (int)vector.y, (int)vector.z].parent != transform)
             { 
                     return false;
@@ -68,10 +66,182 @@ public class Pentominoes : MonoBehaviour
 
     void Update()
     {
-        // Movement
-        // Move left
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        // Movement for testing in Unity Only
         {
+            // Move left
+            /*
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                // Modify position
+                transform.position += new Vector3(-1, 0, 0);
+
+                // Check if Valid
+                if (isValidGridPosition())
+                {
+                    // Yes it is a valid position
+                    updateGrid();
+                }
+                else
+                {
+                    // It is not a valid position
+                    transform.position += new Vector3(1, 0, 0);
+                }
+                // Move right
+            } else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                // Modify position
+                transform.position += new Vector3(1, 0, 0);
+
+                // Check if Valid
+                if (isValidGridPosition())
+                {
+                    // Yes it is a valid position
+                    updateGrid();
+                }
+                else
+                {
+                    // It is not a valid position
+                    transform.position += new Vector3(-1, 0, 0);
+                }
+            }
+
+            // Move back
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                // Modify position
+                transform.position += new Vector3(0, 0, -1);
+
+                // Check if Valid
+                if (isValidGridPosition())
+                {
+                    // Yes it is a valid position
+                    updateGrid();
+                }
+                else
+                {
+                    // It is not a valid position
+                    transform.position += new Vector3(0, 0, 1);
+                }
+                // Move forward
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                // Modify position
+                transform.position += new Vector3(0, 0, 1);
+
+                // Check if Valid
+                if (isValidGridPosition())
+                {
+                    // Yes it is a valid position
+                    updateGrid();
+                }
+                else
+                {
+                    // It is not a valid position
+                    transform.position += new Vector3(0, 0, -1);
+                }
+            }
+
+            // Rotate right
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                transform.Rotate(0, 0, -90);
+
+                // Check if Valid
+                if (isValidGridPosition())
+                {
+                    // Yes it is a valid position
+                    updateGrid();
+                }
+                else
+                {
+                    // It is not a valid position
+                    transform.Rotate(0, 0, 90);
+                }
+            }
+            // Rotate left
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                transform.Rotate(0, 0, 90);
+
+                // Check if Valid
+                if (isValidGridPosition())
+                {
+                    // Yes it is a valid position
+                    updateGrid();
+                }
+                else
+                {
+                    // It is not a valid position
+                    transform.Rotate(0, 0, -90);
+                }
+            }
+
+            // Rotate forward
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                transform.Rotate(-90, 0, 0);
+
+                // Check if Valid
+                if (isValidGridPosition())
+                {
+                    // Yes it is a valid position
+                    updateGrid();
+                }
+                else
+                {
+                    // It is not a valid position
+                    transform.Rotate(90, 0, 0);
+                }
+            }
+            // Rotate back
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                transform.Rotate(90, 0, 0);
+
+                // Check if Valid
+                if (isValidGridPosition())
+                {
+                    // Yes it is a valid position
+                    updateGrid();
+                }
+                else
+                {
+                    // It is not a valid position
+                    transform.Rotate(-90, 0, 0);
+                }
+            }
+
+            // Fall
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // Modify position
+                transform.position += new Vector3(0, -1, 0);
+
+                if (isValidGridPosition())
+                {
+                    // Yes it is a valid position
+                    updateGrid();
+                }
+                else
+                {
+                    // It is not a valid position
+                    transform.position += new Vector3(0, 1, 0);
+
+                    // clear filled lines
+                    Playfield.deleteFullLayers();
+
+                    // Spawn next pentomino
+                    FindObjectOfType<Spawner>().spawnNext();
+
+                    // Disable script
+                    enabled = false;
+                }
+            */
+        }
+
+        if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft))
+       {  
             // Modify position
             transform.position += new Vector3(-1, 0, 0);
 
@@ -87,8 +257,8 @@ public class Pentominoes : MonoBehaviour
                 transform.position += new Vector3(1, 0, 0);
             }
             // Move right
-        } else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
+       } else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight))
+       {
             // Modify position
             transform.position += new Vector3(1, 0, 0);
 
@@ -103,10 +273,8 @@ public class Pentominoes : MonoBehaviour
                 // It is not a valid position
                 transform.position += new Vector3(-1, 0, 0);
             }
-        }
-
-        // Move back
-        if (Input.GetKeyDown(KeyCode.A))
+            }// Move back
+        else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickDown))
         {
             // Modify position
             transform.position += new Vector3(0, 0, -1);
@@ -124,7 +292,7 @@ public class Pentominoes : MonoBehaviour
             }
             // Move forward
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickUp))
         {
             // Modify position
             transform.position += new Vector3(0, 0, 1);
@@ -143,7 +311,7 @@ public class Pentominoes : MonoBehaviour
         }
 
         // Rotate right
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight))
         {
             transform.Rotate(0, 0, -90);
 
@@ -158,9 +326,8 @@ public class Pentominoes : MonoBehaviour
                 // It is not a valid position
                 transform.Rotate(0, 0, 90);
             }
-        }
-        // Rotate left
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        }// Rotate left
+        else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickLeft))
         {
             transform.Rotate(0, 0, 90);
 
@@ -175,10 +342,8 @@ public class Pentominoes : MonoBehaviour
                 // It is not a valid position
                 transform.Rotate(0, 0, -90);
             }
-        }
-
-        // Rotate forward
-        if (Input.GetKeyDown(KeyCode.W))
+        } // Rotate forward
+        else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickUp))
         {
             transform.Rotate(-90, 0, 0);
 
@@ -195,7 +360,7 @@ public class Pentominoes : MonoBehaviour
             }
         }
         // Rotate back
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickDown))
         {
             transform.Rotate(90, 0, 0);
 
@@ -213,7 +378,7 @@ public class Pentominoes : MonoBehaviour
         }
 
         // Fall
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (OVRInput.Get(OVRInput.Button.One))
         {
             // Modify position
             transform.position += new Vector3(0, -1, 0);
@@ -237,8 +402,7 @@ public class Pentominoes : MonoBehaviour
                 // Disable script
                 enabled = false;
             }
-
-            lastFall = Time.time;
         }
+        lastFall = Time.time;
     }
-}
+    }
