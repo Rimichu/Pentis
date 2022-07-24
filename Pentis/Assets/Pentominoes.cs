@@ -69,7 +69,6 @@ public class Pentominoes : MonoBehaviour
         // Movement for testing in Unity Only
         {
             // Move left
-            /*
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 // Modify position
@@ -87,7 +86,9 @@ public class Pentominoes : MonoBehaviour
                     transform.position += new Vector3(1, 0, 0);
                 }
                 // Move right
-            } else if (Input.GetKeyDown(KeyCode.RightArrow))
+            } 
+            // Move right
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 // Modify position
                 transform.position += new Vector3(1, 0, 0);
@@ -104,9 +105,8 @@ public class Pentominoes : MonoBehaviour
                     transform.position += new Vector3(-1, 0, 0);
                 }
             }
-
             // Move back
-            if (Input.GetKeyDown(KeyCode.A))
+            else if (Input.GetKeyDown(KeyCode.A))
             {
                 // Modify position
                 transform.position += new Vector3(0, 0, -1);
@@ -124,6 +124,7 @@ public class Pentominoes : MonoBehaviour
                 }
                 // Move forward
             }
+            // Move forward
             else if (Input.GetKeyDown(KeyCode.D))
             {
                 // Modify position
@@ -176,9 +177,8 @@ public class Pentominoes : MonoBehaviour
                     transform.Rotate(0, 0, -90);
                 }
             }
-
             // Rotate forward
-            if (Input.GetKeyDown(KeyCode.W))
+            else if (Input.GetKeyDown(KeyCode.W))
             {
                 transform.Rotate(-90, 0, 0);
 
@@ -237,9 +237,10 @@ public class Pentominoes : MonoBehaviour
                     // Disable script
                     enabled = false;
                 }
-            */
+            }
         }
 
+        // Move Left
         if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft))
        {  
             // Modify position
@@ -257,7 +258,9 @@ public class Pentominoes : MonoBehaviour
                 transform.position += new Vector3(1, 0, 0);
             }
             // Move right
-       } else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight))
+       } 
+        // Move Right
+        else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight))
        {
             // Modify position
             transform.position += new Vector3(1, 0, 0);
@@ -273,7 +276,8 @@ public class Pentominoes : MonoBehaviour
                 // It is not a valid position
                 transform.position += new Vector3(-1, 0, 0);
             }
-            }// Move back
+            }
+        // Move back
         else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickDown))
         {
             // Modify position
@@ -292,6 +296,7 @@ public class Pentominoes : MonoBehaviour
             }
             // Move forward
         }
+        // Move forward
         else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickUp))
         {
             // Modify position
@@ -326,7 +331,8 @@ public class Pentominoes : MonoBehaviour
                 // It is not a valid position
                 transform.Rotate(0, 0, 90);
             }
-        }// Rotate left
+        }
+        // Rotate left
         else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickLeft))
         {
             transform.Rotate(0, 0, 90);
@@ -342,7 +348,8 @@ public class Pentominoes : MonoBehaviour
                 // It is not a valid position
                 transform.Rotate(0, 0, -90);
             }
-        } // Rotate forward
+        } 
+        // Rotate forward
         else if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickUp))
         {
             transform.Rotate(-90, 0, 0);
